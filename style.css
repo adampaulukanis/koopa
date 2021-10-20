@@ -1,0 +1,44 @@
+@charset "UTF-8";
+:root {
+  --size: 3rem;
+}
+html {
+  font-size: 100%;
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+table {
+  table-layout: fixed;
+  width: calc(10 * var(--size));
+  cursor: pointer;
+}
+td {
+  border: 1px solid black;
+  white-space: nowrap;
+  height: var(--size);
+  width: var(--size);
+  text-align: center;
+  overflow: hidden;
+  padding: 2px;
+  font-family: Tahoma;
+  font-size: 200%;
+}
+td:hover {
+  background: black;
+  color: white;
+}
+.hide {
+  visibility: hidden;
+}
