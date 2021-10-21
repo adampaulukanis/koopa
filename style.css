@@ -35,10 +35,7 @@ td {
   font-family: Tahoma;
   font-size: 200%;
 }
-td:hover {
-  background: black;
-  color: white;
-}
 .hide {
-  visibility: hidden;
+  background: black;
+  color: black;
 }

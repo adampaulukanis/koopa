@@ -1,7 +1,29 @@
-/* jshint strict: global, esversion: 6, browser: true */
+/* jshint strict: global, esversion: 6, browser: true, devel: true */
 'use strict';
 
 const board = document.getElementById('board').querySelectorAll('td');
+const h1 = document.querySelector('h1');
+
+function clickHandler(event) {
+  let cell = event.target;
+  cell.classList.remove('hide');
+
+  if (cell.innerText === '-1') {
+    cell.innerText = '💩';
+    gameOver();
+  }
+}
+
+function gameOver() {
+  board.forEach((el) => {
+    el.removeEventListener('click', clickHandler);
+    el.classList.remove('hide');
+    if (el.innerText === '-1') {
+      el.innerText = '💩';
+    }
+  });
+  h1.innerText = 'Game Over Bolek!';
+}
 
 function get10randomNumbers(max) {
   let counter = 10;
@@ -18,7 +40,8 @@ function get10randomNumbers(max) {
 
 let numbers = get10randomNumbers(board.length);
 numbers.forEach((cellNo) => {
-  board[cellNo].innerText = '💩';
+  // board[cellNo].innerText = '💩';
+  board[cellNo].innerText = '-1';
 });
 
 function Vector(x, y) {
@@ -64,7 +87,7 @@ for (let y = 0; y < 10; y++) {
       { x: x - 1, y: y - 1 },
     ].forEach((cell) => {
       if (grid.isInside(cell)) {
-        if (grid.get(cell).innerText === '💩') howMany++;
+        if (grid.get(cell).innerText === '-1') howMany++;
       }
     });
     if (grid.get({ x, y }).innerText === '') {
@@ -74,10 +97,6 @@ for (let y = 0; y < 10; y++) {
 }
 
 board.forEach((el) => {
-  el.seen = false;
   el.classList.add('hide');
-  el.addEventListener('click', (event) => {
-    console.log(event.target.innerText);
-    el.classList.remove('hide');
-  });
+  el.addEventListener('click', clickHandler);
 });
